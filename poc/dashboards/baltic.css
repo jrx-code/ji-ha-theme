@@ -1,0 +1,96 @@
+/* ==========================================================================
+   JI-Theme-Baltic — a theme within JI Engineering Style.
+   A theme = a set of role-token overrides scoped to [data-ji-theme="baltic"],
+   layered on the ji.css foundation. Components read the tokens, so they
+   restyle automatically — structure, radii, typography and the channel-tick
+   signature stay identical to the base system.
+   Palette: Baltic Sea teal (primary) + Baltic amber / bursztyn (accent),
+   cool sea-mist neutrals, maritime semantics. Light + auto/forced dark.
+   ========================================================================== */
+
+/* ---- light ---- */
+:root[data-ji-theme="baltic"]{
+  /* primary = deep Baltic sea teal */
+  --ji-primary:#12647E; --ji-on-primary:#FFFFFF;
+  --ji-primary-container:#DCEEF4; --ji-on-primary-container:#0A4055;
+  --ji-link:#0E5A74;
+  --ji-neutral-button:#13303C;                 /* deep harbour ink */
+
+  /* amber signature accent (highlights, secondary CTA, active chip tint) */
+  --ji-accent:#C77D27; --ji-on-accent:#3A2408;
+  --ji-accent-container:#FBEAD2; --ji-on-accent-container:#5A3608;
+  --ji-accent-btn:#A5641A; --ji-on-accent-btn:#FFFFFF;   /* filled amber btn, white text AA */
+
+  /* surfaces — cool sea mist */
+  --ji-bg:#EDF1F3; --ji-on-bg:#0E1C22;
+  --ji-surface:#FFFFFF; --ji-on-surface:#0E1C22;
+  --ji-surface-variant:#EAF0F2; --ji-on-surface-variant:#4A5B63;
+  --ji-outline:#CBD5DA; --ji-outline-variant:#E0E7EA;
+
+  /* maritime semantics (distinct by lightness as well as hue) */
+  --ji-success:#2E7D5B; --ji-success-bg:#E2F2EA; --ji-on-success:#124A34;
+  --ji-warning:#9A6410; --ji-warning-bg:#FBEAD2; --ji-on-warning:#5A3608;
+  --ji-danger:#B04430;  --ji-danger-bg:#FBE4DF;  --ji-on-danger:#6B2015;
+  --ji-danger-btn:#A53D2B; --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#2B7FA8;    --ji-info-bg:#E2F0F7;    --ji-on-info:#0E4A66;
+
+  /* brand gradient — aqua → sea → deep */
+  --ji-gradient:linear-gradient(135deg,#5BB8D4 0%,#12647E 52%,#06303F 100%);
+}
+
+/* ---- dark (harbour night): auto + forced ---- */
+@media (prefers-color-scheme: dark){
+  :root[data-ji-theme="baltic"]:not([data-theme="light"]){
+    --ji-primary:#5BB8D4; --ji-on-primary:#06303F;
+    --ji-primary-container:#123140; --ji-on-primary-container:#CDE9F2;
+    --ji-link:#8FD3EB; --ji-neutral-button:#E6EEF2;
+    --ji-accent:#E8A23D; --ji-on-accent:#2A1A06;
+    --ji-accent-container:#3A2A12; --ji-on-accent-container:#F6DCB4;
+    --ji-accent-btn:#C77D27; --ji-on-accent-btn:#FFFFFF;
+    --ji-bg:#0C141A; --ji-on-bg:#E6EEF2;
+    --ji-surface:#14202A; --ji-on-surface:#E6EEF2;
+    --ji-surface-variant:#1B2A35; --ji-on-surface-variant:#9FB3BD;
+    --ji-outline:#33454F; --ji-outline-variant:#243540;
+    --ji-success:#4FC28E; --ji-success-bg:#10291F; --ji-on-success:#BFEBD5;
+    --ji-warning:#E8A23D; --ji-warning-bg:#33240F; --ji-on-warning:#F6DCB4;
+    --ji-danger:#FF8A75;  --ji-danger-bg:#3A1812;  --ji-on-danger:#FFD8CF;
+    --ji-danger-btn:#C14A34; --ji-on-danger-btn:#FFFFFF;
+    --ji-info:#6FB8DC;    --ji-info-bg:#0E2A38;    --ji-on-info:#CDE9F2;
+    --ji-gradient:linear-gradient(135deg,#7FD0E6 0%,#2F8FA8 52%,#06303F 100%);
+  }
+}
+:root[data-ji-theme="baltic"][data-theme="dark"]{
+  --ji-primary:#5BB8D4; --ji-on-primary:#06303F;
+  --ji-primary-container:#123140; --ji-on-primary-container:#CDE9F2;
+  --ji-link:#8FD3EB; --ji-neutral-button:#E6EEF2;
+  --ji-accent:#E8A23D; --ji-on-accent:#2A1A06;
+  --ji-accent-container:#3A2A12; --ji-on-accent-container:#F6DCB4;
+  --ji-accent-btn:#C77D27; --ji-on-accent-btn:#FFFFFF;
+  --ji-bg:#0C141A; --ji-on-bg:#E6EEF2;
+  --ji-surface:#14202A; --ji-on-surface:#E6EEF2;
+  --ji-surface-variant:#1B2A35; --ji-on-surface-variant:#9FB3BD;
+  --ji-outline:#33454F; --ji-outline-variant:#243540;
+  --ji-success:#4FC28E; --ji-success-bg:#10291F; --ji-on-success:#BFEBD5;
+  --ji-warning:#E8A23D; --ji-warning-bg:#33240F; --ji-on-warning:#F6DCB4;
+  --ji-danger:#FF8A75;  --ji-danger-bg:#3A1812;  --ji-on-danger:#FFD8CF;
+  --ji-danger-btn:#C14A34; --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#6FB8DC;    --ji-info-bg:#0E2A38;    --ji-on-info:#CDE9F2;
+  --ji-gradient:linear-gradient(135deg,#7FD0E6 0%,#2F8FA8 52%,#06303F 100%);
+}
+
+/* amber secondary-CTA button — a theme-scoped variant, same .ji-btn family
+   (tick, radius, elevation); carries the Baltic amber signature. */
+:root[data-ji-theme="baltic"] .ji-btn--accent{
+  background:var(--ji-accent-btn); color:var(--ji-on-accent-btn);
+  box-shadow:var(--ji-shadow-sm), inset 0 1px 0 rgba(255,255,255,.2);
+}
+:root[data-ji-theme="baltic"] .ji-btn--accent:hover{filter:brightness(1.08);}
+/* amber chip (active-highlight alternative) */
+:root[data-ji-theme="baltic"] .ji-chip--accent{
+  position:relative; padding-left:16px;
+  background:var(--ji-accent-container); color:var(--ji-on-accent-container);
+}
+:root[data-ji-theme="baltic"] .ji-chip--accent::before{
+  content:""; position:absolute; left:5px; top:50%; transform:translateY(-50%);
+  width:3px; height:12px; border-radius:0 2px 2px 0; background:var(--ji-accent);
+}

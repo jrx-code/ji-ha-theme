@@ -1,0 +1,122 @@
+/* JI-Theme-Highvis — a theme within JI Engineering Style.
+   Role-token overrides scoped to [data-ji-theme="highvis"] on the ji.css foundation.
+   Structure, radii, typography and the channel-tick signature unchanged.
+   Light + auto/forced dark. Palette per theme; base tokens from ji.css. */
+:root[data-ji-theme="highvis"]{
+  --ji-primary:#E8900D;
+  --ji-on-primary:#1A1206;
+  --ji-primary-container:#FCE6BE;
+  --ji-on-primary-container:#4E3206;
+  --ji-link:#9A6400;
+  --ji-neutral-button:#2B2F36;
+  --ji-accent:#2B2F36;
+  --ji-on-accent:#FFFFFF;
+  --ji-accent-container:#E4E6E9;
+  --ji-on-accent-container:#1A1D22;
+  --ji-accent-btn:#2B2F36;
+  --ji-on-accent-btn:#FFFFFF;
+  --ji-bg:#F7F6F3;
+  --ji-on-bg:#1A1D22;
+  --ji-surface:#FFFFFF;
+  --ji-on-surface:#1A1D22;
+  --ji-surface-variant:#F0EFEC;
+  --ji-on-surface-variant:#55565B;
+  --ji-outline:#DAD9D5;
+  --ji-outline-variant:#E4E7EC;
+  --ji-success:#137547;
+  --ji-success-bg:#E6F4EC;
+  --ji-on-success:#0B4F30;
+  --ji-warning:#B5730A;
+  --ji-warning-bg:#FDEBD8;
+  --ji-on-warning:#5A2703;
+  --ji-danger:#C8341C;
+  --ji-danger-bg:#FBE1DC;
+  --ji-on-danger:#6B1A0E;
+  --ji-danger-btn:#B42318;
+  --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#1550A8;
+  --ji-info-bg:#E8F0FD;
+  --ji-on-info:#0C3C87;
+  --ji-gradient:linear-gradient(135deg,#FFC24D 0%,#E8900D 52%,#7A4A06 100%);
+}
+@media (prefers-color-scheme: dark){
+:root[data-ji-theme="highvis"]:not([data-theme="light"]){
+  --ji-primary:#FFB22E;
+  --ji-on-primary:#1A1206;
+  --ji-primary-container:#3A2A08;
+  --ji-on-primary-container:#FFE3A8;
+  --ji-link:#FFC24D;
+  --ji-neutral-button:#C9CDD3;
+  --ji-accent:#C9CDD3;
+  --ji-on-accent:#16191E;
+  --ji-accent-container:#2A2E34;
+  --ji-on-accent-container:#E7EAEE;
+  --ji-accent-btn:#C9CDD3;
+  --ji-on-accent-btn:#16191E;
+  --ji-bg:#0C0D0F;
+  --ji-on-bg:#F2F3F5;
+  --ji-surface:#16181C;
+  --ji-on-surface:#F2F3F5;
+  --ji-surface-variant:#1F2228;
+  --ji-on-surface-variant:#A6AEB8;
+  --ji-outline:#343841;
+  --ji-outline-variant:#2A303A;
+  --ji-success:#45C98A;
+  --ji-success-bg:#13291E;
+  --ji-on-success:#BBF0D3;
+  --ji-warning:#FFC84D;
+  --ji-warning-bg:#3A2410;
+  --ji-on-warning:#FFE1C2;
+  --ji-danger:#FF7A5A;
+  --ji-danger-bg:#3A1812;
+  --ji-on-danger:#FFD8CF;
+  --ji-danger-btn:#C14A34;
+  --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#8EC1FF;
+  --ji-info-bg:#13263F;
+  --ji-on-info:#CFE4FB;
+  --ji-gradient:linear-gradient(135deg,#FFC24D 0%,#E8900D 52%,#7A4A06 100%);
+}
+}
+:root[data-ji-theme="highvis"][data-theme="dark"]{
+  --ji-primary:#FFB22E;
+  --ji-on-primary:#1A1206;
+  --ji-primary-container:#3A2A08;
+  --ji-on-primary-container:#FFE3A8;
+  --ji-link:#FFC24D;
+  --ji-neutral-button:#C9CDD3;
+  --ji-accent:#C9CDD3;
+  --ji-on-accent:#16191E;
+  --ji-accent-container:#2A2E34;
+  --ji-on-accent-container:#E7EAEE;
+  --ji-accent-btn:#C9CDD3;
+  --ji-on-accent-btn:#16191E;
+  --ji-bg:#0C0D0F;
+  --ji-on-bg:#F2F3F5;
+  --ji-surface:#16181C;
+  --ji-on-surface:#F2F3F5;
+  --ji-surface-variant:#1F2228;
+  --ji-on-surface-variant:#A6AEB8;
+  --ji-outline:#343841;
+  --ji-outline-variant:#2A303A;
+  --ji-success:#45C98A;
+  --ji-success-bg:#13291E;
+  --ji-on-success:#BBF0D3;
+  --ji-warning:#FFC84D;
+  --ji-warning-bg:#3A2410;
+  --ji-on-warning:#FFE1C2;
+  --ji-danger:#FF7A5A;
+  --ji-danger-bg:#3A1812;
+  --ji-on-danger:#FFD8CF;
+  --ji-danger-btn:#C14A34;
+  --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#8EC1FF;
+  --ji-info-bg:#13263F;
+  --ji-on-info:#CFE4FB;
+  --ji-gradient:linear-gradient(135deg,#FFC24D 0%,#E8900D 52%,#7A4A06 100%);
+}
+
+:root[data-ji-theme="highvis"] .ji-btn--accent{background:var(--ji-accent-btn);color:var(--ji-on-accent-btn);box-shadow:var(--ji-shadow-sm),inset 0 1px 0 rgba(255,255,255,.2);}
+:root[data-ji-theme="highvis"] .ji-btn--accent:hover{filter:brightness(1.08);}
+:root[data-ji-theme="highvis"] .ji-chip--accent{position:relative;padding-left:16px;background:var(--ji-accent-container);color:var(--ji-on-accent-container);}
+:root[data-ji-theme="highvis"] .ji-chip--accent::before{content:"";position:absolute;left:5px;top:50%;transform:translateY(-50%);width:3px;height:12px;border-radius:0 2px 2px 0;background:var(--ji-accent);}

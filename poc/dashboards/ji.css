@@ -1,0 +1,250 @@
+/* JI Engineering Style — web drop-in. Generated from tokens/tokens.json. v0.4.0
+   Single visual language (Business): soft radius, elevation, channel tick, tinted state cards.
+   (The earlier opt-in Engineering scheme and .ji-scheme-* wrappers were removed in v0.3.0.
+   v0.3.1: the channel tick is on every button variant, in the button's own text colour.
+   v0.3.2: cards/state cards/chips/badges/inputs tuned to the button family — the channel
+   tick is the shared status marker, tighter radius, matching elevation.
+   v0.3.3: the channel tick now also marks cards (header), active chips, badges and focused
+   fields (.ji-field wrapper) — one signature across the whole component set.
+   v0.3.4: tighter corner radii for a more refined read — btn 5, ghost 4, chip 5, input 6,
+   state card 7, card 8, badge 4.
+   v0.4.0: those radii are now tokens (--ji-rc-* here, radius.component in tokens.json) so
+   web and android share one source; android shapes move to match (btn 7->5, ghost 5->4).)
+   Usage: <link rel="stylesheet" href="ji.css"> then use .ji-* classes and var(--ji-*).
+   Dark mode: automatic via prefers-color-scheme; force with <html data-theme="light|dark">. */
+
+/* 1. Fonts — Manrope/JetBrains Mono via Google Fonts; JI Circuit (brand face)
+   self-hosted from ../fonts. Paths assume web/ and fonts/ are siblings in the repo;
+   adjust the url() if you flatten the layout. woff2 ≈10 KB/face, .ttf fallback. */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+@font-face{font-family:'JI Circuit';font-weight:400;font-style:normal;
+  src:url('../fonts/JICircuit-Regular.woff2') format('woff2'),
+      url('../fonts/JICircuit-Regular.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'JI Circuit';font-weight:700;font-style:normal;
+  src:url('../fonts/JICircuit-Bold.woff2') format('woff2'),
+      url('../fonts/JICircuit-Bold.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'JI Circuit';font-weight:400;font-style:italic;
+  src:url('../fonts/JICircuit-Italic.woff2') format('woff2'),
+      url('../fonts/JICircuit-Italic.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'JI Circuit';font-weight:700;font-style:italic;
+  src:url('../fonts/JICircuit-BoldItalic.woff2') format('woff2'),
+      url('../fonts/JICircuit-BoldItalic.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'JI Circuit Mono';font-weight:400;font-style:normal;
+  src:url('../fonts/JICircuitMono-Regular.woff2') format('woff2'),
+      url('../fonts/JICircuitMono-Regular.ttf') format('truetype');font-display:swap;}
+@font-face{font-family:'JI Circuit Mono';font-weight:700;font-style:normal;
+  src:url('../fonts/JICircuitMono-Bold.woff2') format('woff2'),
+      url('../fonts/JICircuitMono-Bold.ttf') format('truetype');font-display:swap;}
+
+/* 2. Tokens */
+:root {
+  /* brand */
+  --ji-azure:#189CE4;
+  --ji-blue-50:#EAF1FC; --ji-blue-100:#D3E2FA; --ji-blue-200:#A9C5F2; --ji-blue-300:#6FA3E8;
+  --ji-blue-400:#3B82DE; --ji-blue-500:#1557C0; --ji-blue-600:#0F47A3; --ji-blue-700:#0C3C87;
+  --ji-blue-800:#0A2F6B; --ji-blue-900:#071F47; --ji-ink:#101828;
+  /* neutral */
+  --ji-n0:#FFFFFF; --ji-n25:#F7F8FA; --ji-n50:#F2F4F7; --ji-n75:#EEF0F3; --ji-n100:#EAECF0;
+  --ji-n200:#E4E7EC; --ji-n300:#D0D5DD; --ji-n400:#98A2B3; --ji-n500:#667085;
+  --ji-n600:#475467; --ji-n700:#344054; --ji-n800:#1D2939; --ji-n900:#101828;
+  /* semantic */
+  --ji-success:#137547; --ji-success-bg:#E6F4EC; --ji-on-success:#0B4F30;
+  --ji-warning:#8A3B05; --ji-warning-bg:#FDEBD8; --ji-on-warning:#5A2703;
+  --ji-danger:#9B1C1C;  --ji-danger-bg:#FDE2E2;  --ji-on-danger:#611414;
+  --ji-danger-btn:#B42318; --ji-on-danger-btn:#fff;   /* filled danger button (white text, AA both themes) */
+  --ji-info:#1550A8;    --ji-info-bg:#E8F0FD;    --ji-on-info:#0C3C87;
+
+  /* roles (light) */
+  --ji-primary:var(--ji-blue-500); --ji-on-primary:#fff;
+  --ji-primary-container:var(--ji-blue-50); --ji-on-primary-container:var(--ji-blue-700);
+  --ji-neutral-button:var(--ji-ink);
+  --ji-bg:var(--ji-n75); --ji-on-bg:var(--ji-n900);
+  --ji-surface:var(--ji-n0); --ji-on-surface:var(--ji-n900);
+  --ji-surface-variant:var(--ji-n50); --ji-on-surface-variant:var(--ji-n600);
+  --ji-outline:var(--ji-n300); --ji-outline-variant:var(--ji-n200);
+  --ji-link:var(--ji-blue-600);
+  --ji-shadow-sm:0 1px 2px rgba(16,24,40,.06);
+  --ji-shadow-md:0 4px 12px rgba(16,24,40,.08);
+  --ji-shadow-lg:0 12px 32px rgba(16,24,40,.12);
+
+  /* type */
+  --ji-font:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  --ji-mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --ji-font-display:'JI Circuit','Manrope',sans-serif;   /* brand face — hero/lockup only */
+  --ji-mono-brand:'JI Circuit Mono',var(--ji-mono);      /* opt-in: numerics, device IDs, vins */
+
+  /* space / radius */
+  --ji-s1:4px; --ji-s2:8px; --ji-s3:12px; --ji-s4:16px; --ji-s5:20px; --ji-s6:24px; --ji-s8:32px; --ji-s12:48px;
+  --ji-r-sm:8px; --ji-r-md:12px; --ji-r-lg:16px; --ji-r-xl:22px; --ji-r-2xl:24px; --ji-r-pill:999px;
+  /* component radii (unified v0.4.0) — single source = tokens.json radius.component; android maps the same values to .dp */
+  --ji-rc-btn:5px; --ji-rc-ghost:4px; --ji-rc-chip:5px; --ji-rc-input:6px;
+  --ji-rc-statecard:7px; --ji-rc-card:8px; --ji-rc-badge:4px; --ji-rc-tick:2px;
+
+  /* the brand gradient (hex mark) */
+  --ji-gradient:linear-gradient(135deg,var(--ji-azure) 0%,var(--ji-blue-500) 52%,var(--ji-blue-900) 100%);
+
+  color-scheme:light dark;
+}
+
+/* dark roles */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ji-primary:#5FB3F0; --ji-on-primary:#071F47;
+    --ji-primary-container:#13263F; --ji-on-primary-container:#CFE4FB;
+    --ji-neutral-button:#ECEFF3;
+    --ji-bg:#0E1116; --ji-on-bg:#ECEFF3;
+    --ji-surface:#181C23; --ji-on-surface:#ECEFF3;
+    --ji-surface-variant:#1F242D; --ji-on-surface-variant:#A9B1BD;
+    --ji-outline:#3A414C; --ji-outline-variant:#2A303A;
+    --ji-link:#8EC1FF;
+    --ji-success:#45C98A; --ji-success-bg:#13291E; --ji-on-success:#BBF0D3;
+    --ji-warning:#FFB870; --ji-warning-bg:#3A2410; --ji-on-warning:#FFE1C2;
+    --ji-danger:#FF9C9C;  --ji-danger-bg:#3F1515;  --ji-on-danger:#FFD9D9;
+    --ji-danger-btn:#C5221A; --ji-on-danger-btn:#fff;
+    --ji-info:#8EC1FF;    --ji-info-bg:#13263F;    --ji-on-info:#CFE4FB;
+    --ji-shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --ji-shadow-md:0 4px 12px rgba(0,0,0,.45);
+    --ji-shadow-lg:0 12px 32px rgba(0,0,0,.55);
+  }
+}
+:root[data-theme="dark"] {
+  --ji-primary:#5FB3F0; --ji-on-primary:#071F47;
+  --ji-primary-container:#13263F; --ji-on-primary-container:#CFE4FB;
+  --ji-neutral-button:#ECEFF3;
+  --ji-bg:#0E1116; --ji-on-bg:#ECEFF3;
+  --ji-surface:#181C23; --ji-on-surface:#ECEFF3;
+  --ji-surface-variant:#1F242D; --ji-on-surface-variant:#A9B1BD;
+  --ji-outline:#3A414C; --ji-outline-variant:#2A303A;
+  --ji-link:#8EC1FF;
+  --ji-success:#45C98A; --ji-success-bg:#13291E; --ji-on-success:#BBF0D3;
+  --ji-warning:#FFB870; --ji-warning-bg:#3A2410; --ji-on-warning:#FFE1C2;
+  --ji-danger:#FF9C9C;  --ji-danger-bg:#3F1515;  --ji-on-danger:#FFD9D9;
+  --ji-danger-btn:#C5221A; --ji-on-danger-btn:#fff;
+  --ji-info:#8EC1FF;    --ji-info-bg:#13263F;    --ji-on-info:#CFE4FB;
+}
+
+/* 3. Base */
+.ji-root, body.ji {
+  margin:0; background:var(--ji-bg); color:var(--ji-on-bg);
+  font-family:var(--ji-font); font-weight:500; font-size:15px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.ji-mono{font-family:var(--ji-mono);}
+.ji-root a, a.ji-link{color:var(--ji-link); text-decoration:none;}
+.ji-root a:hover, a.ji-link:hover{text-decoration:underline;}
+
+/* 4. Typography */
+/* Hero/brand lockup uses the JI Circuit face. It is a geometric monoline (weights
+   400/700 only, no 800) so it takes positive tracking, not the tight Manrope -2px.
+   Headings/body stay on Manrope for legibility; opt more in with .ji-display. */
+.ji-display{font:400 44px/1.02 var(--ji-font-display); letter-spacing:1px; margin:0;}
+.ji-mono-brand{font-family:var(--ji-mono-brand); font-variant-numeric:tabular-nums;}
+.ji-h1{font:800 28px/1.15 var(--ji-font); letter-spacing:-.5px; margin:0;}
+.ji-h2{font:800 22px/1.2 var(--ji-font); letter-spacing:-.3px; margin:0;}
+.ji-h3{font:800 18px/1.3 var(--ji-font); margin:0;}
+.ji-title{font:800 16px/1.3 var(--ji-font); margin:0;}
+.ji-body{font:500 15px/1.5 var(--ji-font); margin:0;}
+.ji-small{font:500 13px/1.45 var(--ji-font); color:var(--ji-on-surface-variant);}
+.ji-caption{font:700 12px/1.3 var(--ji-font); letter-spacing:.4px; text-transform:uppercase; color:var(--ji-on-surface-variant);}
+.ji-label{font:700 14px/1.2 var(--ji-font);}
+
+/* 5. Buttons — min 48px touch target. Single look (Business): soft radius,
+   channel tick on every variant, inset highlight, slight elevation.
+   The tick takes each button's own text colour (currentColor), so it reads
+   on filled, outlined and ghost buttons alike. */
+.ji-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  position:relative; min-height:48px; padding:0 20px 0 21px; border:0;
+  border-radius:var(--ji-rc-btn); overflow:hidden;
+  font:700 15px/1 var(--ji-font); cursor:pointer; text-decoration:none;
+  transition:filter .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.ji-btn::before{
+  content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:3px; height:16px; border-radius:0 2px 2px 0;
+  background:color-mix(in srgb, currentColor 72%, transparent);}
+.ji-btn:active{transform:translateY(1px);}
+.ji-btn:focus-visible{outline:2px solid var(--ji-primary); outline-offset:2px;}
+.ji-btn--primary{background:var(--ji-primary); color:var(--ji-on-primary);
+  box-shadow:var(--ji-shadow-sm), inset 0 1px 0 rgba(255,255,255,.2);}
+.ji-btn--primary:hover{filter:brightness(1.08);}
+.ji-btn--neutral{background:var(--ji-neutral-button); color:var(--ji-surface);}
+.ji-btn--neutral:hover{filter:brightness(1.12);}
+.ji-btn--outline{background:var(--ji-surface); color:var(--ji-on-surface);
+  box-shadow:var(--ji-shadow-sm), inset 0 0 0 1px var(--ji-outline);}
+.ji-btn--outline:hover{box-shadow:inset 0 0 0 1.5px var(--ji-primary); color:var(--ji-primary);}
+.ji-btn--ghost{background:transparent; color:var(--ji-primary); box-shadow:none; border-radius:var(--ji-rc-ghost);}
+.ji-btn--ghost:hover{background:var(--ji-primary-container);}
+.ji-btn--danger{background:var(--ji-danger-btn); color:var(--ji-on-danger-btn);}
+.ji-btn--danger:hover{filter:brightness(1.08);}
+.ji-btn--sm{min-height:36px; padding:0 14px 0 15px; font-size:13px;}
+.ji-btn--pill{border-radius:var(--ji-r-pill);}
+.ji-btn[disabled]{opacity:.5; pointer-events:none;}
+
+/* 6. Surfaces & components — tuned to the button family (v0.3.2):
+   tighter radius, the button's channel tick as the shared status marker, matching elevation. */
+.ji-card{position:relative; overflow:hidden; background:var(--ji-surface); color:var(--ji-on-surface);
+  border-radius:var(--ji-rc-card); padding:var(--ji-s5) var(--ji-s5) var(--ji-s5) 22px; box-shadow:var(--ji-shadow-md);
+  border:1px solid var(--ji-outline-variant);}
+.ji-card::before{content:""; position:absolute; left:0; top:20px; width:3px; height:18px;
+  border-radius:0 2px 2px 0; background:var(--ji-primary);}   /* family channel tick at the header */
+.ji-input{width:100%; min-height:48px; padding:0 14px; box-sizing:border-box;
+  background:var(--ji-surface); color:var(--ji-on-surface);
+  border:1.5px solid var(--ji-outline); border-radius:var(--ji-rc-input);
+  font:500 15px/1 var(--ji-font);}
+.ji-input:focus{outline:none; border-color:var(--ji-primary); box-shadow:0 0 0 3px var(--ji-primary-container);}
+/* .ji-field wraps an input to show the channel tick on focus (leading edge) */
+.ji-field{position:relative; display:block;}
+.ji-field::before{content:""; position:absolute; left:0; top:50%; z-index:2;
+  transform:translateY(-50%) scaleY(0); width:3px; height:20px; border-radius:0 2px 2px 0;
+  background:var(--ji-primary); transition:transform .14s ease;}
+.ji-field:focus-within::before{transform:translateY(-50%) scaleY(1);}
+.ji-chip{display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 12px;
+  border-radius:var(--ji-rc-chip); font:700 13px/1 var(--ji-font);
+  background:var(--ji-surface-variant); color:var(--ji-on-surface-variant);}
+.ji-chip--active{position:relative; padding-left:16px;
+  background:var(--ji-primary-container); color:var(--ji-on-primary-container);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22);}
+.ji-chip--active::before{content:""; position:absolute; left:5px; top:50%; transform:translateY(-50%);
+  width:3px; height:12px; border-radius:0 2px 2px 0; background:var(--ji-primary);}
+.ji-badge{position:relative; display:inline-flex; align-items:center; gap:6px; height:24px; padding:0 10px 0 13px;
+  border-radius:var(--ji-rc-badge); font:700 12px/1 var(--ji-font);}
+.ji-badge::before{content:""; position:absolute; left:5px; top:50%; transform:translateY(-50%);
+  width:2px; height:10px; border-radius:1px; background:currentColor;}
+.ji-badge--ok{background:var(--ji-success-bg); color:var(--ji-on-success);}
+.ji-badge--warn{background:var(--ji-warning-bg); color:var(--ji-on-warning);}
+.ji-badge--danger{background:var(--ji-danger-bg); color:var(--ji-on-danger);}
+.ji-badge--info{background:var(--ji-info-bg); color:var(--ji-on-info);}
+
+/* State card — a card that carries one semantic status (ok/warn/danger/info).
+   Matches the button family: the same channel tick (3px, leading edge, accent) is the status
+   marker, tighter radius, soft shadow + inset highlight. The tint still carries the semantics. */
+.ji-statecard{position:relative; display:flex; flex-direction:column; gap:6px;
+  background:var(--ji-sc-bg,var(--ji-surface)); color:var(--ji-sc-fg,var(--ji-on-surface));
+  border:1px solid transparent; border-radius:var(--ji-rc-statecard); overflow:hidden;
+  padding:var(--ji-s4) var(--ji-s5) var(--ji-s4) 20px;
+  box-shadow:var(--ji-shadow-sm), inset 0 1px 0 rgba(255,255,255,.14);}
+.ji-statecard::before{content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:3px; height:18px; border-radius:0 2px 2px 0; background:var(--ji-sc-accent,var(--ji-on-surface-variant));}
+.ji-statecard__head{display:flex; align-items:center; gap:8px; font:800 16px/1.2 var(--ji-font);}
+.ji-statecard__dot{display:none;}
+.ji-statecard__body{margin:0; font:500 14px/1.5 var(--ji-font);
+  color:var(--ji-sc-fg,var(--ji-on-surface-variant)); opacity:.88;}
+.ji-statecard--ok{--ji-sc-accent:var(--ji-success); --ji-sc-bg:var(--ji-success-bg); --ji-sc-fg:var(--ji-on-success);}
+.ji-statecard--warn{--ji-sc-accent:var(--ji-warning); --ji-sc-bg:var(--ji-warning-bg); --ji-sc-fg:var(--ji-on-warning);}
+.ji-statecard--danger{--ji-sc-accent:var(--ji-danger); --ji-sc-bg:var(--ji-danger-bg); --ji-sc-fg:var(--ji-on-danger);}
+.ji-statecard--info{--ji-sc-accent:var(--ji-info); --ji-sc-bg:var(--ji-info-bg); --ji-sc-fg:var(--ji-on-info);}
+.ji-divider{height:1px; background:var(--ji-outline-variant); border:0; margin:var(--ji-s4) 0;}
+
+/* 7. Layout helpers */
+.ji-container{max-width:1120px; margin:0 auto; padding:0 16px;}
+.ji-stack{display:flex; flex-direction:column; gap:var(--ji-s4);}
+.ji-row{display:flex; align-items:center; gap:var(--ji-s3); flex-wrap:wrap;}
+.ji-grid{display:grid; gap:var(--ji-s4); grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+/* list-detail canonical layout (desktop two-pane, phone single column) */
+.ji-list-detail{display:grid; gap:var(--ji-s4); grid-template-columns:1fr;}
+@media (min-width:840px){ .ji-list-detail{grid-template-columns:minmax(280px,360px) 1fr;} }
+
+.ji-appbar{display:flex; align-items:center; gap:var(--ji-s3); height:56px; padding:0 16px;
+  background:var(--ji-surface); border-bottom:1px solid var(--ji-outline-variant);}
+.ji-brandmark{height:28px; width:auto; display:block;}

@@ -1,0 +1,122 @@
+/* JI-Theme-Tatra — a theme within JI Engineering Style.
+   Role-token overrides scoped to [data-ji-theme="tatra"] on the ji.css foundation.
+   Structure, radii, typography and the channel-tick signature unchanged.
+   Light + auto/forced dark. Palette per theme; base tokens from ji.css. */
+:root[data-ji-theme="tatra"]{
+  --ji-primary:#3E4A5B;
+  --ji-on-primary:#FFFFFF;
+  --ji-primary-container:#E3E7EC;
+  --ji-on-primary-container:#222A34;
+  --ji-link:#2E3A49;
+  --ji-neutral-button:#1C222B;
+  --ji-accent:#4C8C5A;
+  --ji-on-accent:#FFFFFF;
+  --ji-accent-container:#E4F1E8;
+  --ji-on-accent-container:#1C4A2C;
+  --ji-accent-btn:#3C7049;
+  --ji-on-accent-btn:#FFFFFF;
+  --ji-bg:#F4F5F7;
+  --ji-on-bg:#1C222B;
+  --ji-surface:#FFFFFF;
+  --ji-on-surface:#1C222B;
+  --ji-surface-variant:#EDEFF2;
+  --ji-on-surface-variant:#475467;
+  --ji-outline:#D3D8DE;
+  --ji-outline-variant:#E4E7EC;
+  --ji-success:#137547;
+  --ji-success-bg:#E6F4EC;
+  --ji-on-success:#0B4F30;
+  --ji-warning:#8A3B05;
+  --ji-warning-bg:#FDEBD8;
+  --ji-on-warning:#5A2703;
+  --ji-danger:#9B1C1C;
+  --ji-danger-bg:#FDE2E2;
+  --ji-on-danger:#611414;
+  --ji-danger-btn:#B42318;
+  --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#1550A8;
+  --ji-info-bg:#E8F0FD;
+  --ji-on-info:#0C3C87;
+  --ji-gradient:linear-gradient(135deg,#6B7A8C 0%,#3E4A5B 52%,#1E252E 100%);
+}
+@media (prefers-color-scheme: dark){
+:root[data-ji-theme="tatra"]:not([data-theme="light"]){
+  --ji-primary:#9FB2C6;
+  --ji-on-primary:#1A222C;
+  --ji-primary-container:#27313D;
+  --ji-on-primary-container:#D7E2EE;
+  --ji-link:#B9C8D8;
+  --ji-neutral-button:#E4EAF0;
+  --ji-accent:#76C78C;
+  --ji-on-accent:#06240F;
+  --ji-accent-container:#16301E;
+  --ji-on-accent-container:#CFE4FB;
+  --ji-accent-btn:#4C8C5A;
+  --ji-on-accent-btn:#06240F;
+  --ji-bg:#0F141A;
+  --ji-on-bg:#ECEFF3;
+  --ji-surface:#19212A;
+  --ji-on-surface:#ECEFF3;
+  --ji-surface-variant:#222C36;
+  --ji-on-surface-variant:#9BA8B6;
+  --ji-outline:#333E49;
+  --ji-outline-variant:#2A303A;
+  --ji-success:#45C98A;
+  --ji-success-bg:#13291E;
+  --ji-on-success:#BBF0D3;
+  --ji-warning:#FFB870;
+  --ji-warning-bg:#3A2410;
+  --ji-on-warning:#FFE1C2;
+  --ji-danger:#FF9C9C;
+  --ji-danger-bg:#3F1515;
+  --ji-on-danger:#FFD9D9;
+  --ji-danger-btn:#C5221A;
+  --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#8EC1FF;
+  --ji-info-bg:#13263F;
+  --ji-on-info:#CFE4FB;
+  --ji-gradient:linear-gradient(135deg,#9FB2C6 0%,#4A5A6E 52%,#1E252E 100%);
+}
+}
+:root[data-ji-theme="tatra"][data-theme="dark"]{
+  --ji-primary:#9FB2C6;
+  --ji-on-primary:#1A222C;
+  --ji-primary-container:#27313D;
+  --ji-on-primary-container:#D7E2EE;
+  --ji-link:#B9C8D8;
+  --ji-neutral-button:#E4EAF0;
+  --ji-accent:#76C78C;
+  --ji-on-accent:#06240F;
+  --ji-accent-container:#16301E;
+  --ji-on-accent-container:#CFE4FB;
+  --ji-accent-btn:#4C8C5A;
+  --ji-on-accent-btn:#06240F;
+  --ji-bg:#0F141A;
+  --ji-on-bg:#ECEFF3;
+  --ji-surface:#19212A;
+  --ji-on-surface:#ECEFF3;
+  --ji-surface-variant:#222C36;
+  --ji-on-surface-variant:#9BA8B6;
+  --ji-outline:#333E49;
+  --ji-outline-variant:#2A303A;
+  --ji-success:#45C98A;
+  --ji-success-bg:#13291E;
+  --ji-on-success:#BBF0D3;
+  --ji-warning:#FFB870;
+  --ji-warning-bg:#3A2410;
+  --ji-on-warning:#FFE1C2;
+  --ji-danger:#FF9C9C;
+  --ji-danger-bg:#3F1515;
+  --ji-on-danger:#FFD9D9;
+  --ji-danger-btn:#C5221A;
+  --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#8EC1FF;
+  --ji-info-bg:#13263F;
+  --ji-on-info:#CFE4FB;
+  --ji-gradient:linear-gradient(135deg,#9FB2C6 0%,#4A5A6E 52%,#1E252E 100%);
+}
+
+:root[data-ji-theme="tatra"] .ji-btn--accent{background:var(--ji-accent-btn);color:var(--ji-on-accent-btn);box-shadow:var(--ji-shadow-sm),inset 0 1px 0 rgba(255,255,255,.2);}
+:root[data-ji-theme="tatra"] .ji-btn--accent:hover{filter:brightness(1.08);}
+:root[data-ji-theme="tatra"] .ji-chip--accent{position:relative;padding-left:16px;background:var(--ji-accent-container);color:var(--ji-on-accent-container);}
+:root[data-ji-theme="tatra"] .ji-chip--accent::before{content:"";position:absolute;left:5px;top:50%;transform:translateY(-50%);width:3px;height:12px;border-radius:0 2px 2px 0;background:var(--ji-accent);}

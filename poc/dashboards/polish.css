@@ -1,0 +1,96 @@
+/* ==========================================================================
+   JI-Theme-Polish — a theme within JI Engineering Style.
+   A theme = role-token overrides scoped to [data-ji-theme="polish"], layered on
+   the ji.css foundation. Structure, radii, typography and the channel-tick
+   signature stay identical to the base system.
+   Palette: Polish national red (primary) on a clean white field, with the white
+   eagle's crown gold as the signature accent. Maritime? no — "biało-czerwony".
+   Light + auto/forced dark. Danger stays a darker brick so it reads apart from
+   the crimson primary (lightness + hue, per the a11y rule).
+   ========================================================================== */
+
+/* ---- light ---- */
+:root[data-ji-theme="polish"]{
+  /* primary = Polish red (white text passes AA) */
+  --ji-primary:#C8102E; --ji-on-primary:#FFFFFF;
+  --ji-primary-container:#FBE1E5; --ji-on-primary-container:#7A0C1C;
+  --ji-link:#A50E26;
+  --ji-neutral-button:#1A1A1E;
+
+  /* crown-gold signature accent (highlights, secondary CTA, active chip tint) */
+  --ji-accent:#C8A23C; --ji-on-accent:#3A2E08;
+  --ji-accent-container:#F8EFD6; --ji-on-accent-container:#5A4710;
+  --ji-accent-btn:#8A6D18; --ji-on-accent-btn:#FFFFFF;   /* filled gold btn, white text AA */
+
+  /* surfaces — snow white field */
+  --ji-bg:#F7F7F8; --ji-on-bg:#1A1A1E;
+  --ji-surface:#FFFFFF; --ji-on-surface:#1A1A1E;
+  --ji-surface-variant:#F2F3F5; --ji-on-surface-variant:#55565B;
+  --ji-outline:#D8D9DD; --ji-outline-variant:#ECEDEF;
+
+  /* semantics — danger brick (darker than the crimson primary), gold-leaning warning */
+  --ji-success:#2E7D32; --ji-success-bg:#E6F2E7; --ji-on-success:#15491A;
+  --ji-warning:#8A5A0A; --ji-warning-bg:#FBEFD6; --ji-on-warning:#4E3206;
+  --ji-danger:#9B1C1C;  --ji-danger-bg:#FBE1E1;  --ji-on-danger:#611414;
+  --ji-danger-btn:#A4161A; --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#1550A8;    --ji-info-bg:#E8F0FD;    --ji-on-info:#0C3C87;
+
+  /* brand gradient — crimson tones */
+  --ji-gradient:linear-gradient(135deg,#E23350 0%,#C8102E 52%,#7A0C1C 100%);
+}
+
+/* ---- dark: auto + forced ---- */
+@media (prefers-color-scheme: dark){
+  :root[data-ji-theme="polish"]:not([data-theme="light"]){
+    --ji-primary:#FF7A88; --ji-on-primary:#420711;
+    --ji-primary-container:#3A1218; --ji-on-primary-container:#FFD9DE;
+    --ji-link:#FF9AA6; --ji-neutral-button:#ECECEE;
+    --ji-accent:#E8C766; --ji-on-accent:#2E2404;
+    --ji-accent-container:#332808; --ji-on-accent-container:#F6E6B8;
+    --ji-accent-btn:#C8A23C; --ji-on-accent-btn:#2E2404;
+    --ji-bg:#121214; --ji-on-bg:#ECECEE;
+    --ji-surface:#1D1D20; --ji-on-surface:#ECECEE;
+    --ji-surface-variant:#26262A; --ji-on-surface-variant:#AFAFB4;
+    --ji-outline:#3C3C42; --ji-outline-variant:#2A2A2F;
+    --ji-success:#5FC46A; --ji-success-bg:#10291A; --ji-on-success:#C7EFCB;
+    --ji-warning:#E8B85A; --ji-warning-bg:#332607; --ji-on-warning:#F6E2B4;
+    --ji-danger:#FF8A8A;  --ji-danger-bg:#3A1515;  --ji-on-danger:#FFD9D9;
+    --ji-danger-btn:#C5221A; --ji-on-danger-btn:#FFFFFF;
+    --ji-info:#8EC1FF;    --ji-info-bg:#13263F;    --ji-on-info:#CFE4FB;
+    --ji-gradient:linear-gradient(135deg,#FF6B7D 0%,#C8102E 52%,#5A0A15 100%);
+  }
+}
+:root[data-ji-theme="polish"][data-theme="dark"]{
+  --ji-primary:#FF7A88; --ji-on-primary:#420711;
+  --ji-primary-container:#3A1218; --ji-on-primary-container:#FFD9DE;
+  --ji-link:#FF9AA6; --ji-neutral-button:#ECECEE;
+  --ji-accent:#E8C766; --ji-on-accent:#2E2404;
+  --ji-accent-container:#332808; --ji-on-accent-container:#F6E6B8;
+  --ji-accent-btn:#C8A23C; --ji-on-accent-btn:#2E2404;
+  --ji-bg:#121214; --ji-on-bg:#ECECEE;
+  --ji-surface:#1D1D20; --ji-on-surface:#ECECEE;
+  --ji-surface-variant:#26262A; --ji-on-surface-variant:#AFAFB4;
+  --ji-outline:#3C3C42; --ji-outline-variant:#2A2A2F;
+  --ji-success:#5FC46A; --ji-success-bg:#10291A; --ji-on-success:#C7EFCB;
+  --ji-warning:#E8B85A; --ji-warning-bg:#332607; --ji-on-warning:#F6E2B4;
+  --ji-danger:#FF8A8A;  --ji-danger-bg:#3A1515;  --ji-on-danger:#FFD9D9;
+  --ji-danger-btn:#C5221A; --ji-on-danger-btn:#FFFFFF;
+  --ji-info:#8EC1FF;    --ji-info-bg:#13263F;    --ji-on-info:#CFE4FB;
+  --ji-gradient:linear-gradient(135deg,#FF6B7D 0%,#C8102E 52%,#5A0A15 100%);
+}
+
+/* gold secondary-CTA button — theme-scoped, same .ji-btn family (tick/radius/elevation) */
+:root[data-ji-theme="polish"] .ji-btn--accent{
+  background:var(--ji-accent-btn); color:var(--ji-on-accent-btn);
+  box-shadow:var(--ji-shadow-sm), inset 0 1px 0 rgba(255,255,255,.2);
+}
+:root[data-ji-theme="polish"] .ji-btn--accent:hover{filter:brightness(1.08);}
+/* gold active chip */
+:root[data-ji-theme="polish"] .ji-chip--accent{
+  position:relative; padding-left:16px;
+  background:var(--ji-accent-container); color:var(--ji-on-accent-container);
+}
+:root[data-ji-theme="polish"] .ji-chip--accent::before{
+  content:""; position:absolute; left:5px; top:50%; transform:translateY(-50%);
+  width:3px; height:12px; border-radius:0 2px 2px 0; background:var(--ji-accent);
+}
