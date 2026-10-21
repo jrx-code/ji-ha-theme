@@ -1,7 +1,7 @@
 # JI Engineering Style — Home Assistant theme pack
 
-The [JI Engineering Style](https://example.invalid/books/ji-design-system) design
-system, as a set of Home Assistant frontend themes. One package, eleven themes,
+The JI Engineering Style design system, as a set of Home Assistant frontend
+themes. One package, eleven themes,
 each carrying **light + dark** modes that follow Home Assistant's own dark-mode
 setting. Colours, tight radii and the Manrope/JetBrains type pair come straight
 from the design system's single source of truth (`web/ji.css` + `themes/*.css`);
