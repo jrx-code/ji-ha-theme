@@ -47,12 +47,19 @@ regenerated from them, so the table and the themes cannot drift apart.
 
 ### Via HACS (theme)
 
-1. HACS → three-dot menu → **Custom repositories** → add this repo's URL with
-   category **Theme**.
-2. Install **JI Engineering Style**, then restart Home Assistant (or reload
-   themes).
-3. `frontend: themes: !include_dir_merge_named themes` must be in your
+The theme is in the HACS default store.
+
+1. HACS (or the Marketplace on Home Assistant 2026.11+) → search for
+   **JI Engineering Style** → download it, then restart Home Assistant (or
+   reload themes).
+2. `frontend: themes: !include_dir_merge_named themes` must be in your
    `configuration.yaml` (it is in the HA default config).
+
+[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=jrx-code&repository=ji-ha-theme&category=theme)
+
+If the search finds nothing yet, add it by hand: HACS → three-dot menu →
+**Custom repositories** → `https://github.com/jrx-code/ji-ha-theme`, category
+**Theme**.
 
 ### Manual
 
