@@ -106,6 +106,10 @@ frontend:
     - /local/ji/ji-font.js?v=1
 ```
 
+On Home Assistant 2026.11+ the Marketplace serves downloads from `/local/community/`, so the
+card-mod line can also read `/local/community/lovelace-card-mod/card-mod.js`. The `/hacsfiles/`
+path keeps working after the upgrade.
+
 Without card-mod the `card-mod-*` keys are ignored and only the colours, radii
 and fonts apply.
 
